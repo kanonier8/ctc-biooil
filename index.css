@@ -1,8 +1,6 @@
 /*
 	orange_light #f0a084
 	orange_sale #eb5f28
-	orange_text #eb5f28
-
 	dark_text_color #4e3d42
 */
 
@@ -104,18 +102,25 @@ body {
 	width: 100%;
 	height: 100%;
     background: #ffd4c7;
+    min-width: 320px;
 	font: 16px 'regular', Helvetica, Arial, sans-serif;
 }
 
 
+.page-collapsed.page-active {
+    visibility: visible;
+    animation: showIn .6s ease-in-out forwards;
+}
+
 .page-main {
 	width: 100%;
-	height: 100vh;
-    max-height: 450px;
+    height: 495px;
+    max-width: 375px;
 	background: url('./images/mobile/wp.jpg') no-repeat center center;
 	background-size: cover;
     display: flex;
     justify-content: center;
+    margin: 0 auto;
 }
 
 .main-right,
@@ -123,13 +128,15 @@ body {
     flex-shrink: 0;
     box-sizing: border-box;
     width: 50%;
-    padding: 30px 20px;
+    padding: 25px 0;
+    position: relative;
 }
 
 .logo {
     width: 123px;
     display: block;
     margin-bottom: 12px;
+    margin-left: 10px;
 }
 .logo img {
     max-width: 100%;
@@ -137,9 +144,10 @@ body {
 
 .slogan {
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 13px;
     font-family: 'regular';
     color: #4e3d42;
+    margin-left: 10px;
 }
 
 .button {
@@ -160,34 +168,324 @@ body {
 .button.more {
     color: #eb5f28;
     background-color: #fff;
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
+    justify-content: flex-start;
+    padding-left: 32px;
+}
+.button.more:after {
+    content: '';
+    display: block;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #eb5f28;
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url('./images/arrow.png') no-repeat center 52%;
+    background-size: 50%;
 }
 
 .page-collapsed {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
 	width: 100%;
-	min-height: 100vh;
+    max-width: 375px;
+	height: 495px;
 	background: url('./images/mobile/wp_collapse.jpg') no-repeat center center;
 	background-size: cover;
+    margin: 0 auto;
+    opacity: 0;
 }
 
 .sale {
     color: #eb5f28;
     text-transform: uppercase;
+    text-align: center;
 }
 .sale-top {
-    font-size: 14px;
-    /*font-family: 'thin';*/
+    font-size: 13px;
+    font-family: 'regular';
 }
 .sale-middle {
     font-size: 28px;
-    font-family: 'bold';
+    font-family: 'xblack';
 }
 .sale-bottom {
     font-size: 64px;
     font-family: 'xblack';
+    line-height: 0.9;
+}
+.sale-bottom span {
+    font-size: 36px;
 }
 
 .button.promocode {
     background-color: #eb5f28;
     color: #fff;
+    position: absolute;
+    left: 50%;
+    bottom: 30px;
+    transform: translateX(-50%);
 }
 
+.description,
+.about {
+    font-size: 11px;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 25px 0;
+    max-width: 150px;
+    /*position: relative;*/
+}
+
+.description {
+    position: absolute;
+    right: 0;
+    width: 50%;
+    color: #eb6029;
+    top: 161px;
+    padding: 0;
+}
+
+.purpose {
+    color: #4e3d42;
+    position: absolute;
+    right: 0;
+    width: 50%;
+    top: 25px;
+    margin: 0;
+    max-width: 150px;
+}
+.purpose b {
+    font-family: Arial;
+    font-weight: 900;
+}
+.benefits {
+    color: #eb6029;
+    text-transform: uppercase;
+    list-style: none;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    width: 50%;
+    max-width: 150px;
+}
+.benefits li {
+    margin-bottom: 6px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.benefits li:before {
+    content: '—';
+    color: #eb6029;
+    width: 18px;
+    display: block;
+}
+.benefits li:last-child {
+    margin-bottom: 0;
+}
+
+.page-collapsed .promocode {
+    width: 300px;
+    height: 50px;
+    border-radius: 50px;
+    font-size: 22px;
+}
+
+
+@media screen and (max-width: 320px) {
+    .page-collapsed,
+    .page-main {
+        height: 450px;
+    }
+    .benefits,
+    .purpose,
+    .description {
+        font-size: 10px;
+    }
+}
+
+@media screen and (min-width: 321px) {
+    .benefits,
+    .purpose,
+    .description {
+        right: 25%;
+        transform: translateX(50%);
+    }
+}
+
+
+
+@media screen and (min-width: 990px) {
+    .page-main,
+    .page-collapsed {
+        width: 990px;
+        height: 400px;
+        max-width: none;
+        background-size: auto;
+        padding: 40px 35px;
+        box-sizing: border-box;
+    }
+    .page-main {
+        background-image: url('./images/desktop/wp.jpg');
+    }
+    .page-collapsed {
+        background-image: url('./images/desktop/wp_collapse.jpg');
+    }
+    .button {
+        width: 250px;
+        height: 60px;
+        border-radius: 60px;
+        font-size: 20px;
+    }
+    .button.more {
+        justify-content: flex-start;
+        padding-left: 37px;
+        bottom: 0;
+        left: 0;
+        transform: none;
+    }
+    .button.more:after {
+        width: 54px;
+        height: 54px;
+        right: 3px;
+        background-size: auto;
+        transition: transform .4s ease;
+    }
+    .more:hover::after {
+        transform: translateY(-50%) rotate(180deg)
+    }
+    .button.promocode {
+        right: 0;
+        transform: none;
+        bottom: 0;
+        left: auto;
+    }
+    .logo {
+        width: 185px;
+        margin-bottom: 15px;
+    }
+    .main-right,
+    .main-left {
+        width: 50%;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+    .sale {
+        text-align: right;
+        padding-right: 20px;
+    }
+    .sale-top {
+        font-size: 30px;
+    }
+    .sale-middle {
+        font-size: 62px;
+    }
+    .sale-bottom {
+        font-size: 140px;
+    }
+    .sale-bottom span {
+        font-size: 80px;
+    }
+    .slogan {
+        font-size: 21px;
+        width: 225px;
+        margin: 0;
+    }
+
+
+    .page-collapsed {
+        display: flex;
+        align-items: flex-start;
+    }
+    .page-collapsed .logo {
+        margin-left: 0;
+    }
+
+    .page-collapsed .slogan {
+        margin-bottom: 18px;
+    }
+
+    .description,
+    .about {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        max-width: none;
+        width: 50%;
+        flex-shrink: 0;
+        padding: 0;
+    }
+
+    .purpose,
+    .benefits {
+        width: auto;
+        max-width: none;
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+    }
+
+    .purpose {
+        font-size: 16px;
+        width: 335px;
+        margin-bottom: 28px;
+    }
+
+    .benefits {
+        font-size: 22px;
+    }
+    .benefits li {
+        margin-bottom: 8px;
+    }
+    .benefits li:before {
+        width: 32px;
+    }
+
+    .description {
+        font-size: 15px;
+        padding-left: 195px;
+    }
+    .description p:last-child,
+    .description p:first-child {
+        margin: 0;
+    }
+    .page-collapsed .promocode {
+        right: 50px;
+        bottom: 40px;
+        width: 250px;
+        height: 60px;
+        border-radius: 60px;
+        font-size: 20px;
+    }
+
+    .promocode:hover {
+        background-color: #d85522;
+    }
+}
+
+@keyframes showIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
