@@ -107,10 +107,12 @@ body {
 }
 
 
-.page-collapsed.page-active {
-    visibility: visible;
-    animation: showIn .6s ease-in-out forwards;
+.page {
+    overflow: hidden;
+    height: 495px;
+    position: relative;
 }
+
 
 .page-main {
 	width: 100%;
@@ -121,6 +123,19 @@ body {
     display: flex;
     justify-content: center;
     margin: 0 auto;
+    transition: transform .8s ease;
+}
+
+.page-main:not(.page-active) {
+    transform: translateY(-100%);
+}
+.page-collapsed.page-active {
+    transform: translateY(-100%);
+    /*animation:  slideUp .6s ease-in-out forwards;*/
+}
+.page-collapsed.page-active .description,
+.page-collapsed.page-active .about {
+    opacity: 1;
 }
 
 .main-right,
@@ -191,18 +206,21 @@ body {
 }
 
 .page-collapsed {
-    visibility: hidden;
-    position: absolute;
+    /*visibility: hidden;*/
+    position: relative;
+    z-index: 2;
+/*    position: absolute;
     top: 0;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-50%);*/
 	width: 100%;
     max-width: 375px;
 	height: 495px;
 	background: url('./images/mobile/wp_collapse.jpg') no-repeat center center;
 	background-size: cover;
     margin: 0 auto;
-    opacity: 0;
+    /*opacity: 0;*/
+    transition: transform .8s ease;
 }
 
 .sale {
@@ -245,6 +263,8 @@ body {
     padding: 25px 0;
     max-width: 150px;
     /*position: relative;*/
+    opacity: 0;
+    transition: opacity 1.2s ease 1s;
 }
 
 .description {
@@ -304,6 +324,7 @@ body {
 
 
 @media screen and (max-width: 320px) {
+    .page,
     .page-collapsed,
     .page-main {
         height: 450px;
@@ -327,6 +348,9 @@ body {
 
 
 @media screen and (min-width: 990px) {
+    .page {
+        height: 400px;
+    }
     .page-main,
     .page-collapsed {
         width: 990px;
@@ -481,11 +505,11 @@ body {
     }
 }
 
-@keyframes showIn {
+@keyframes slideUp {
     from {
-        opacity: 0;
+        transform: translateY(100%);
     }
     to {
-        opacity: 1;
+        transform: translateY(0);
     }
 }
