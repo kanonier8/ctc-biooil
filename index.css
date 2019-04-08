@@ -350,6 +350,7 @@ body {
 
 
 @media screen and (min-width: 990px) {
+    body,
     .page {
         height: 400px;
     }
